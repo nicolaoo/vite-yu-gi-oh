@@ -4,12 +4,7 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            card: []
-        }
-    },
-    computed: {
-        dataCard() {
-            return res.data.data
+            cardImage: [],
         }
     },
     methods: {
@@ -18,7 +13,7 @@ export default {
                 get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
                 .then((res) => {
                     console.log(res.data.data)
-
+                    this.cardImage = res.data.data
                 })
         }
     },
@@ -39,13 +34,13 @@ export default {
                     </h4>
                 </div>
                 <div class="grid">
-                    <div class="card">
+                    <div v-for="(element, i) in cardImage" :key="i" class="card">
                         <figure>
-                            <img src="https://static-it.gamestop.it/images/products/301603/3max.jpg" alt="">
+                            <img :src="element.card_images[0].image_url" alt="">
                         </figure>
                         <div class="feature">
-                            <h5>'A' cell breending device </h5>
-                            <p>Alien</p>
+                            <h5>{{ element.name }} </h5>
+                            <p>{{ element.type }}</p>
                         </div>
                     </div>
                 </div>
