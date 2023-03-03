@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+import playCard from './playCard.vue'
 
 export default {
     data() {
@@ -19,6 +20,9 @@ export default {
     },
     created() {
         this.getCard()
+    },
+    components: {
+        playCard
     }
 }
 
@@ -34,15 +38,7 @@ export default {
                     </h4>
                 </div>
                 <div class="grid">
-                    <div v-for="(element, i) in cardImage" :key="i" class="card">
-                        <figure>
-                            <img :src="element.card_images[0].image_url" alt="">
-                        </figure>
-                        <div class="feature">
-                            <h5>{{ element.name }} </h5>
-                            <p>{{ element.type }}</p>
-                        </div>
-                    </div>
+                    <playCard v-for="(element, i) in cardImage" :key="i" :card-image="element" />
                 </div>
             </div>
         </div>
@@ -52,27 +48,6 @@ export default {
 <style lang="scss" scoped>
 main {
     background-color: darkorange;
-}
-
-.card {
-    padding: 5px;
-
-    .feature {
-        background-color: white;
-        padding: 10px;
-
-        h5 {
-            text-align: center;
-            color: darkorange;
-            text-transform: uppercase;
-            font-size: 10px;
-        }
-
-        p {
-            text-align: center;
-            padding-top: 12px;
-        }
-    }
 }
 
 .grid {
