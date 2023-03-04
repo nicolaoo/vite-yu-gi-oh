@@ -1,11 +1,14 @@
 <script>
 import axios from 'axios'
 import playCard from './playCard.vue'
+import store from '../store'
 
 export default {
     data() {
         return {
-            cardImage: [],
+            // cardImage: [],
+            store,
+
         }
     },
     methods: {
@@ -13,8 +16,8 @@ export default {
             axios.
                 get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
                 .then((res) => {
-                    console.log(res.data.data)
-                    this.cardImage = res.data.data
+                    console.log(this.store.cardImage)
+                    this.store.cardImage = res.data.data
                 })
         }
     },
@@ -38,7 +41,7 @@ export default {
                     </h4>
                 </div>
                 <div class="grid">
-                    <playCard v-for="(element, i) in cardImage" :key="i" :card-image="element" />
+                    <playCard v-for="(element, i) in store.cardImage" :key="i" :card-image="element" />
                 </div>
             </div>
         </div>
