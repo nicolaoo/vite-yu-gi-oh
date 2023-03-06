@@ -2,8 +2,8 @@ import { reactive } from "vue";
 
 const store = reactive({
     cardImage: [],
-    userNameCard: ''
-
+    userNameCard: '',
+    selectType: ''
 })
 
 export default store

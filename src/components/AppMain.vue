@@ -15,12 +15,14 @@ export default {
     methods: {
         getCard() {
             const search = this.store.userNameCard
+            const select = this.store.selectType
             console.log('quetso è search: ', search)
 
             axios.
                 get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0', {
                     params: {
                         fname: search,
+                        type: select
                     }
                 })
                 .then((res) => {
@@ -57,10 +59,10 @@ export default {
                 </div>
                 <div class="container">
                     <div class="input-bar">
-                        <SearchCard @onSearchName="getCard" />
+                        <SearchCard @onSearchName="getCard" @onType="getCard" />
 
                         {{ store.userNameCard }}
-
+                        {{ store.selectType }}
                     </div>
 
                 </div>
