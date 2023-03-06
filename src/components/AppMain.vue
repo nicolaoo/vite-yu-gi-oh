@@ -26,6 +26,10 @@ export default {
                 .then((res) => {
                     console.log(this.store.cardImage)
                     this.store.cardImage = res.data.data
+                }).catch((error) => {
+                    console.log(error)
+                    this.store.cardImage = []
+
                 })
 
 
@@ -61,8 +65,11 @@ export default {
 
                 </div>
 
-                <div class="grid">
+                <div class="grid" v-if="store.cardImage.length > 0">
                     <playCard v-for="(element, i) in store.cardImage" :key="i" :card-image="element" />
+                </div>
+                <div v-else class="grid-error">
+                    prova a cercare un'altro nome!!!!
                 </div>
             </div>
         </div>
@@ -100,6 +107,16 @@ main {
             font-size: 12px;
             line-height: 15px;
         }
+    }
+
+    .grid-error {
+        font-size: 25px;
+        height: 100vh;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        text-transform: uppercase;
+        padding-top: 40px;
     }
 }
 </style>
