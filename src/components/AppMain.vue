@@ -14,12 +14,21 @@ export default {
     },
     methods: {
         getCard() {
+            const search = this.store.userNameCard
+            console.log('quetso è search: ', search)
+
             axios.
-                get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
+                get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0', {
+                    params: {
+                        fname: search,
+                    }
+                })
                 .then((res) => {
                     console.log(this.store.cardImage)
                     this.store.cardImage = res.data.data
                 })
+
+
         }
     },
     created() {
@@ -43,7 +52,13 @@ export default {
                     </h4>
                 </div>
                 <div class="container">
-                    <SearchCard />
+                    <div class="input-bar">
+                        <SearchCard @onSearchName="getCard" />
+
+                        {{ store.userNameCard }}
+
+                    </div>
+
                 </div>
 
                 <div class="grid">
@@ -55,6 +70,13 @@ export default {
 </template>
  
 <style lang="scss" scoped>
+.input-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+}
+
 main {
     background-color: darkorange;
 }

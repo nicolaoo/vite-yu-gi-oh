@@ -1,4 +1,6 @@
 <script>
+import store from '../store'
+
 export default {
 
     data() {
@@ -12,7 +14,7 @@ export default {
 
 <template>
     <div>
-        <input type="text" placeholder="inserici un nome" v-model="userNameCard">
+        <input @keyup.enter="$emit('onSearchName')" type="text" placeholder="inserici un nome" v-model="store.userNameCard">
     </div>
 </template>
 
