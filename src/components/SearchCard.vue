@@ -1,5 +1,6 @@
 <script>
 import store from '../store'
+import PlayCard from './playCard.vue';
 
 export default {
 
@@ -19,6 +20,7 @@ export default {
                 "Trap Card",
                 "Tuner Monster",
                 "Union Effect Monster",
+                'ciao'
 
             ]
         }
@@ -33,7 +35,7 @@ export default {
     </div>
     <div>
         <select @change="$emit('onType')" v-model="store.selectType" id="">
-            <option value=""> type </option>
+            <option :value="PlayCard">-- type --</option>
             <option v-for="element in typeOptions" :value="element" :key="element">{{ element.toLowerCase() }}</option>
         </select>
     </div>
@@ -45,5 +47,9 @@ select {
     padding: 8px;
     border-radius: 10px;
     margin: 10px 0;
+
+    option {
+        text-align: center;
+    }
 }
 </style>
