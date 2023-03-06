@@ -2,6 +2,7 @@
 import axios from 'axios'
 import playCard from './playCard.vue'
 import store from '../store'
+import SearchCard from './SearchCard.vue'
 
 export default {
     data() {
@@ -25,7 +26,8 @@ export default {
         this.getCard()
     },
     components: {
-        playCard
+        playCard,
+        SearchCard,
     }
 }
 
@@ -40,6 +42,10 @@ export default {
                         Found 39 Cards
                     </h4>
                 </div>
+                <div class="container">
+                    <SearchCard />
+                </div>
+
                 <div class="grid">
                     <playCard v-for="(element, i) in store.cardImage" :key="i" :card-image="element" />
                 </div>
